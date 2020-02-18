@@ -21,6 +21,13 @@ public class ControladorVegetal {
 List <Vegetal> listaCarrito=new ArrayList<>();
 @Autowired
 VegetalDao dao ;
+
+@RequestMapping(value="/login")
+public ModelAndView accesoLogin() {
+	ModelAndView modelo = new ModelAndView("login");
+	return modelo;
+}
+
 @RequestMapping(value="/listarVegetal")
 public ModelAndView ListarVegetal() {
 	List <Vegetal> listaVegetal=dao.listarVegetales();

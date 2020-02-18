@@ -9,8 +9,12 @@
 <title>Inicio</title>
 </head>
 <body>
-    <a href="listadoVegetales2/0">Front</a>
-    <a href="listadoVegetal/0">Back</a>
-
+	<table width="80%" align="center">
+		<tr>
+			<td><a href="listadoVegetales2/0">Front</a></td>
+			<td><a href="listadoVegetal/0">Back</a></td>
+			<td><a href="login"> Probar Login</a></td>	
+		</tr>
+	</table>
 </body>
 </html>
