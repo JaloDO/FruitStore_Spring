@@ -39,6 +39,12 @@
 		    <artifactId>spring-web</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.lowagie/itext PDF-->
+<dependency>
+<groupId>com.lowagie</groupId>
+<artifactId>itext</artifactId>
+<version>2.1.7</version>
+</dependency>
 		
 		<!-- Spring JDBC -->
 		<dependency>
