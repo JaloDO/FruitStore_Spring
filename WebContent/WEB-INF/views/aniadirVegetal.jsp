@@ -12,7 +12,7 @@
 <div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-6">
-				<h4 class="text-center">Agregar Nuevo Empleado</h4>
+				<h4 class="text-center">Agregar Nuevo Vegetal</h4>
 				<hr>
 				<form:form method="post" action="guardar">
 					<div class="form-group">
@@ -20,12 +20,12 @@
 						<form:input path="nombre" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<label for = "salario">Salario: </label>
-						<form:input path="salario" class="form-control"/>
+						<label for = "imagen">Imagen: </label>
+						<form:input path="imagen" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<label for ="cargo">Cargo:</label>
-						<form:input path="cargo" class="form-control"/>
+						<label for ="precio">Precio:</label>
+						<form:input path="precio" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

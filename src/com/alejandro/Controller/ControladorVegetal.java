@@ -80,9 +80,9 @@ public ModelAndView listadoVegetales2(@PathVariable int pageId) {
 /*
  * gestión del back
  * */
-@RequestMapping("/aniadirEmpleado")
+@RequestMapping("/aniadirVegetal")
 public ModelAndView MostrarFormulario() {
-	return new ModelAndView("aniadirEmpleado", "command", new Vegetal());
+	return new ModelAndView("aniadirVegetal", "command", new Vegetal());
 }
 
 @RequestMapping(value = "/guardar", method = RequestMethod.POST)
