@@ -9,6 +9,27 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="listadoVegetales2/0">Volver</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../login">Acceso
+            	<span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
    <div id="login">
         <h3 class="text-center text-white pt-5">Acceso usuario</h3>
         

@@ -39,10 +39,13 @@
             <a class="nav-link" href="#">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Clientes</a>
+            <a class="nav-link" href="#">Usuarios</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Productores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login">Acceso</a>
           </li>
         </ul>
       </div>

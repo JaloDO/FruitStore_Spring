@@ -14,6 +14,7 @@
 			<td><a href="listadoVegetales2/0">Front</a></td>
 			<td><a href="listadoVegetal/0">Back</a></td>
 			<td><a href="login"> Probar Login</a></td>	
+			
 		</tr>
 	</table>
 </body>

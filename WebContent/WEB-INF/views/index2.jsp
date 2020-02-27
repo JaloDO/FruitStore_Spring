@@ -60,8 +60,8 @@
 						<td>${veg.imagen}</td>
 						<td>${veg.procedencia}</td>
 						<td>${veg.precio}</td>
-						<td><a href="editarVegetal/${veg.id}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-check"></i> Editar</a></td>
-						<td><a href="eliminarVegetal/${veg.id}" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a></td>
+						<td><a href="../editarVegetal/${veg.id}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-check"></i> Editar</a></td>
+						<td><a href="../eliminarVegetal/${veg.id}" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Eliminar</a></td>
 					</tr>
 				</c:forEach>				
 				</tbody>
