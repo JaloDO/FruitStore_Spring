@@ -69,7 +69,7 @@
 		
 		 
 			<br />
-		 <a href="aniadirVegetal" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Nuevo Vegetal</a>
+		 <a href="../aniadirVegetal" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Nuevo Vegetal</a>
 		</div>
 		
 	</div>

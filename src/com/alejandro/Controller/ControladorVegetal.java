@@ -102,7 +102,7 @@ public class ControladorVegetal {
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
 	public ModelAndView guardar(@ModelAttribute("veg") Vegetal veg) {
 		dao.guardar(veg);
-		return new ModelAndView("redirect:/listadoEmpleados");
+		return new ModelAndView("redirect:/listadoVegetal/0");
 	}
 
 	@RequestMapping("/listadoVeg")
@@ -118,7 +118,7 @@ public class ControladorVegetal {
 	}
 
 	@RequestMapping(value = "/editarGuardar", method = RequestMethod.POST)
-	public ModelAndView editarGuardar(@ModelAttribute("emp") Vegetal veg) {
+	public ModelAndView editarGuardar(@ModelAttribute("vegetal") Vegetal veg) {
 		dao.actualizar(veg);
 		return new ModelAndView("redirect:listadoVegetal/0");
 	}
@@ -126,7 +126,7 @@ public class ControladorVegetal {
 	@RequestMapping(value = "/eliminarVegetal/{id}", method = RequestMethod.GET)
 	public ModelAndView eliminarEmpleado(@PathVariable int id) {
 		dao.eliminar(id);
-		return new ModelAndView("redirect:listadoVegetal/0");
+		return new ModelAndView("redirect:../listadoVegetal/0");
 	}
 	
 	@RequestMapping(value="/eliminarV/{id}",method=RequestMethod.GET)

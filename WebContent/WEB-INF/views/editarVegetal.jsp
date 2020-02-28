@@ -13,24 +13,30 @@
 <div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-6">
-				<h4 class="text-center">Editar Empleado</h4>
-				<hr>
+				<h4 class="text-center">Editar Vegetal</h4>
 				<form:form method="post" action="../editarGuardar">
-					<form:hidden path="id" />
 					<div class="form-group">
 						<label for = "nombre">Nombre: </label>
 						<form:input path="nombre" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<label for = "salario">Salario: </label>
-						<form:input path="salario" class="form-control"/>
+						<label for = "nombre">Categoría: </label>
+						<form:input path="categoria" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<label for ="cargo">Cargo</label>
-						<form:input path="cargo" class="form-control"/>
+						<label for = "nombre">Procedencia: </label>
+						<form:input path="procedencia" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Editar" class="btn btn-success"/>
+						<label for = "imagen">Imagen: </label>
+						<form:input path="imagen" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label for ="precio">Precio:</label>
+						<form:input path="precio" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Modificar" class="btn btn-success"/>
 					</div>
 				</form:form>
 			</div>

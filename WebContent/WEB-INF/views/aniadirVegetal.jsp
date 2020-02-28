@@ -13,11 +13,18 @@
 		<div class="row-fluid">
 			<div class="col-md-6">
 				<h4 class="text-center">Agregar Nuevo Vegetal</h4>
-				<hr>
 				<form:form method="post" action="guardar">
 					<div class="form-group">
 						<label for = "nombre">Nombre: </label>
 						<form:input path="nombre" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label for = "nombre">Categoría: </label>
+						<form:input path="categoria" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label for = "nombre">Procedencia: </label>
+						<form:input path="procedencia" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label for = "imagen">Imagen: </label>
