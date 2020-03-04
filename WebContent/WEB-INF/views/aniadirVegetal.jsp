@@ -4,11 +4,37 @@
 	<title>CRUD SPRING MVC CON MYSQL</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Bootstrap core CSS -->
+  <link href="https://augustobrigadaw.000webhostapp.com/resources2/bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+  <link href="https://augustobrigadaw.000webhostapp.com/resources2/css/shop-homepage.css" rel="stylesheet">
 </head>
+
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Lista Vegetales</a>
+          </li>
+          
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Nuevo Vegetal
+            	<span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">Tienda</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
 <div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-6">

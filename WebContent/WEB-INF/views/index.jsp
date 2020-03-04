@@ -41,9 +41,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Usuarios</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../signIn">Acceso</a>
-          </li>
+          <c:if test="${sessionScope.username == 'admin'}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Back</a>
+            </li>
+        </c:if>
+        <c:if test="${sessionScope.username == null}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/signIn">Acceso</a>
+            </li>
+        </c:if>
+          
         </ul>
       </div>
     </div>
@@ -54,7 +62,7 @@
 
     <div class="row">
 		<c:if test="${sessionScope.username != null}">
-			<h3 class="bg-info">${sessionScope.username}</h1>
+			<h3 class="nav-item">${sessionScope.username}</h1>
 		</c:if>
       <div class="col-lg-3">
 
