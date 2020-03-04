@@ -3,9 +3,13 @@ package com.alejandro.Controller;
 import java.util.ArrayList;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +27,38 @@ public class ControladorVegetal {
 	@Autowired
 	VegetalDao dao;
 
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/acceder")
 	public ModelAndView accesoLogin() {
 		ModelAndView modelo = new ModelAndView("login");
 		return modelo;
 	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public ModelAndView entrar(@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			HttpSession session,
+			ModelMap modelMap) 
+	{
+		ModelAndView modelo = null;
+		if (dao.usuarioRegistrado("admin", password)){
+			session.setAttribute("username", username);
+			modelo=new ModelAndView("/index2");
+			List<Vegetal> lista = dao.listarVegetales();
+			modelo.addObject("lista",lista);
+			modelo.addObject("username", username);
+		}
+		else{
+			session.setAttribute("username", username);
+			List <Slide> listaSlides=dao.listarSlides();
+			List<Vegetal> listaTotal=dao.listarVegetales();
+			modelo=new ModelAndView("/index"); 
+			modelo.addObject("listaSlides",listaSlides);
+			modelo.addObject("listaT",listaTotal);
+		}
+
+		return modelo;
+	}
+	
 
 	@RequestMapping(value="/listarVegetal")
 	public ModelAndView ListarVegetal() {

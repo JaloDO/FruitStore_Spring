@@ -131,7 +131,15 @@
 <groupId>org.hibernate.validator</groupId>
 <artifactId>hibernate-validator</artifactId>
 <version>6.1.2.Final</version>
-</dependency>       
+</dependency>     
+
+<!-- validator -->
+<dependency>
+<groupId>org.hibernate.validator</groupId>
+<artifactId>hibernate-validator</artifactId>
+<version>6.1.2.Final</version>
+</dependency>
+  
 	</dependencies>
   
   

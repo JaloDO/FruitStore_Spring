@@ -140,6 +140,12 @@ public class VegetalDao {
 			  String sql = "select * from vegetales where id=?";
 			  return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Vegetal>(Vegetal.class));
 			 }
+			 
+		public boolean usuarioRegistrado(String user, String pass) {
+			boolean resultado = false;
+			
+			return resultado;
+		}
 	}
 
 
