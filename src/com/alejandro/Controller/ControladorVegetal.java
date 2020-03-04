@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,9 @@ public class ControladorVegetal {
 	List <Vegetal> listaCarrito=new ArrayList<>();
 	@Autowired
 	VegetalDao dao;
+	//sin fichero adjunto
+	@Autowired
+	MailSender mailSender;
 
 	@RequestMapping(value="/acceder")
 	public ModelAndView accesoLogin() {
@@ -33,14 +37,18 @@ public class ControladorVegetal {
 		return modelo;
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView entrar(@RequestParam("username") String username,
 			@RequestParam("password") String password,
 			HttpSession session,
 			ModelMap modelMap) 
 	{
 		ModelAndView modelo = null;
+		
+		//devolver objeto entero y ver si es distinto de null
 		if (dao.usuarioRegistrado("admin", password)){
+			//le pasamos los atributos que queramos para obtenerlos con el sessionScope
+			
 			session.setAttribute("username", username);
 			modelo=new ModelAndView("/index2");
 			List<Vegetal> lista = dao.listarVegetales();
@@ -51,7 +59,7 @@ public class ControladorVegetal {
 			session.setAttribute("username", username);
 			List <Slide> listaSlides=dao.listarSlides();
 			List<Vegetal> listaTotal=dao.listarVegetales();
-			modelo=new ModelAndView("/index"); 
+			modelo=new ModelAndView("/index");
 			modelo.addObject("listaSlides",listaSlides);
 			modelo.addObject("listaT",listaTotal);
 		}

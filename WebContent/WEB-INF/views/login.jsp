@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -19,7 +18,7 @@
             <a class="nav-link" href="listadoVegetales2/0">Volver</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="login" disabled>Acceso
+            <a class="nav-link" href="../acceder" disabled>Acceso
             	<span class="sr-only">(current)</span>
             </a>
           </li>
@@ -43,11 +42,11 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Usuario:</label><br>
-                                <form:input path="username" type="text" class="form-control"/>
+                                <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <form:input path="password" type="text" class="form-control"/>
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group text-center">
                                

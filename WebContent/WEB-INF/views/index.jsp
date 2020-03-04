@@ -42,9 +42,6 @@
             <a class="nav-link" href="#">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Productores</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="../acceder">Acceso</a>
           </li>
         </ul>
@@ -56,7 +53,9 @@
   <div class="container">
 
     <div class="row">
-
+		<c:if test="${sessionScope.username != null}">
+			<h3 class="bg-info">${sessionScope.username}</h1>
+		</c:if>
       <div class="col-lg-3">
 
         <h1 class="my-4">La frutería</h1>

@@ -22,7 +22,8 @@
 		<property name="template" ref="jt"></property>
 	</bean>
 	<!--Configuración del servidor de correo de gmail -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	
+	 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
 		<property name="port" value="587"/>
 		<property name="username" value="jaliyodiaz96@gmail.com"/>
@@ -36,4 +37,5 @@
 			</props>
 		</property>
 	</bean>
+	
 </beans>
