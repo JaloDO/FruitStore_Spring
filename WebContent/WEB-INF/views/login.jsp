@@ -52,8 +52,11 @@
                                
                                 <input type="submit" name="submit" value="Aceptar" class="btn btn-info btn-md" value="submit">
                             </div>
-                            
                         </form>
+                        <div class="form-group text-center">
+                               
+                                <a href="/Fruteria-ADO/signUp" class="stretched-link" value="ir a registro">Todavía no tengo cuenta</a>
+                            </div>
                     </div>
                 </div>
             </div>

@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,7 @@ public class ControladorVegetal {
 	@Autowired
 	MailSender mailSender;
 
-	@RequestMapping(value="/acceder")
+	@RequestMapping(value="/signIn")
 	public ModelAndView accesoLogin() {
 		ModelAndView modelo = new ModelAndView("login");
 		return modelo;
@@ -67,6 +69,21 @@ public class ControladorVegetal {
 		return modelo;
 	}
 	
+	@RequestMapping(value="/signUp", method = RequestMethod.GET)
+	public ModelAndView registrarUsuario() {
+		ModelAndView modelo = new ModelAndView("acceso", "command", new Usuario());
+		return modelo;
+	}
+	
+	@RequestMapping(value="/registrar",method=RequestMethod.POST)
+	public String registrar(@Valid @ModelAttribute("user") Usuario user,BindingResult result) {
+
+		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
+			return "redirect:/signUp";
+		}
+		//dao.crearUsuario(user); //si todos los campos cumplen los requisistos se crea el usuario y se redirecciona 
+		return "redirect:/signIn";
+	}
 
 	@RequestMapping(value="/listarVegetal")
 	public ModelAndView ListarVegetal() {

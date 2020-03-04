@@ -42,7 +42,7 @@
             <a class="nav-link" href="#">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../acceder">Acceso</a>
+            <a class="nav-link" href="../signIn">Acceso</a>
           </li>
         </ul>
       </div>
@@ -60,10 +60,10 @@
 
         <h1 class="my-4">La frutería</h1>
         <div class="list-group">
-          <a href="../listadoVegetales2/0" class="list-group-item">Todo</a>
-          <a href="../buscarCategoria/Fruta" class="list-group-item">Fruta</a>
-          <a href="../buscarCategoria/Hortaliza" class="list-group-item">Hortaliza </a>
-          <a href="../buscarCategoria/Legumbre" class="list-group-item">Legumbre </a>
+          <a href="/Fruteria-ADO/listadoVegetales2/0" class="list-group-item">Todo</a>
+          <a href="/Fruteria-ADO/buscarCategoria/Fruta" class="list-group-item">Fruta</a>
+          <a href="/Fruteria-ADO/buscarCategoria/Hortaliza" class="list-group-item">Hortaliza </a>
+          <a href="/Fruteria-ADO/buscarCategoria/Legumbre" class="list-group-item">Legumbre </a>
         </div>
          <!-- paginación -->
            <c:set var="ind" value="0" scope="page" />
