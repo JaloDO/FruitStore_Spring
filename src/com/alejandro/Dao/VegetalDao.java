@@ -97,10 +97,6 @@ public class VegetalDao {
 				);
 				
 			}
-		public void aniadircarrito(int id) {
-			
-			
-		}
 		/*
 		 * gestión del back
 		 */
@@ -141,10 +137,9 @@ public class VegetalDao {
 			  return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Vegetal>(Vegetal.class));
 			 }
 			 
-		public boolean usuarioRegistrado(String user, String pass) {
-			boolean resultado = false;
-			
-			return resultado;
+		public Usuario usuarioRegistrado(String user,String password) {
+			String sql = "select from user where username="+user+" and password="+password+"";
+			return template.queryForObject(sql, Usuario.class);
 		}
 	}
 

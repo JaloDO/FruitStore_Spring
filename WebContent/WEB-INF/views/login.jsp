@@ -8,7 +8,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color:#f7f7ff;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       
@@ -18,7 +18,7 @@
             <a class="nav-link" href="listadoVegetales2/0">Volver</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="../acceder" disabled>Acceso
+            <a class="nav-link" href="#" disabled>Acceso
             	<span class="sr-only">(current)</span>
             </a>
           </li>
@@ -31,7 +31,7 @@
 
 
    <div id="login">
-        <h3 class="text-center text-white pt-5">Acceso usuario</h3>
+        <h3 class="text-center text-white pt-5"> <br/><br/></h3>
         
 	     ${error}
         <div class="container">
@@ -62,7 +62,13 @@
             </div>
         </div>
     </div>
-	
+	<!-- Footer -->
+  <footer class="py-5 bg-dark" style="position:absolute;bottom:0px;width:100%">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 	
 
 </body>

@@ -10,7 +10,7 @@
 <!-- Custom styles for this template -->
   <link href="https://augustobrigadaw.000webhostapp.com/resources2/css/shop-homepage.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color:#f7f7ff;">
 	<!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">Tienda</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Fruteria-ADO/logout">Cerrar sesion</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -40,9 +43,10 @@
 
 
 <div class="container-fluid">
+	<p></p>
 	<div class="row-fluid">
 		<div class="col-md-6">
-			<h4 class="text-center">Bienvenido Administrador</h4>
+			<h4 class="text">Bienvenido Administrador</h4>
 			<div class="container">
 			     
        <form action="../buscarCategoria" method="post">
@@ -51,9 +55,7 @@
     	</form>
     	<a href="listadoVegetal/0">Todos</a>
   
-			<hr>
-				<br/>
-			
+		<hr>
 	   <c:set var="ind" value="0" scope="page" />
 	    <c:forEach items="${listaVegetal}" var="item" varStatus="status2">
          
@@ -95,14 +97,18 @@
 				</c:forEach>				
 				</tbody>
 			</table>
-		
-		 
-			<br />
-		 <a href="../aniadirVegetal" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Nuevo Vegetal</a>
 		</div>
 		
 	</div>
 </div>
 </div>
+
+<!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 </body>
 </html>

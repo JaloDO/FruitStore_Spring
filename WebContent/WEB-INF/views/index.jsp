@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#f7f7ff;">
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -36,11 +36,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Productos</a>
+            <a class="nav-link" href="/Fruteria-ADO/carrito">Carrito</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Usuarios</a>
-          </li>
+
           <c:if test="${sessionScope.username == 'admin'}">
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Back</a>
@@ -51,6 +49,11 @@
             	<a class="nav-link" href="/Fruteria-ADO/signIn">Acceso</a>
             </li>
         </c:if>
+        <c:if test="${sessionScope.username != null}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/logout">Cerrar Sesion</a>
+            </li>
+        </c:if>
           
         </ul>
       </div>
@@ -59,14 +62,14 @@
 
   <!-- Page Content -->
   <div class="container">
-
-    <div class="row">
-		<c:if test="${sessionScope.username != null}">
-			<h3 class="nav-item">${sessionScope.username}</h1>
-		</c:if>
+    <div class="row">	
       <div class="col-lg-3">
-
+      	<div>
         <h1 class="my-4">La frutería</h1>
+        <c:if test="${sessionScope.username != null}">
+			<h4 class="nav-item">${sessionScope.username}</h4>
+		</c:if>
+		</div>
         <div class="list-group">
           <a href="/Fruteria-ADO/listadoVegetales2/0" class="list-group-item">Todo</a>
           <a href="/Fruteria-ADO/buscarCategoria/Fruta" class="list-group-item">Fruta</a>
@@ -168,7 +171,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
     </div>
     <!-- /.container -->
   </footer>

@@ -1,20 +1,25 @@
 package com.alejandro.Model;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class Vegetal {
+
+		private int id;
 	@NotEmpty(message="Campo obligatorio")
-private int id;
+	@NotNull
+		private String nombre;
 	@NotEmpty(message="Campo obligatorio")
-private String nombre;
+	@NotNull
+		private String categoria;
 	@NotEmpty(message="Campo obligatorio")
-private String categoria;
+	@NotNull
+		private String procedencia;
 	@NotEmpty(message="Campo obligatorio")
-private String procedencia;
-	@NotEmpty(message="Campo obligatorio")
-private String imagen;
-	@NotEmpty(message="Campo obligatorio")
-private float precio;
+	@NotNull
+		private String imagen;
+	@NotNull
+		private float precio;
 	
 public Vegetal() {
 	

@@ -33,12 +33,19 @@ public class ControladorVegetal {
 	@Autowired
 	MailSender mailSender;
 
+	/*
+	 * GESTIÓN DEL SESION
+	 */
 	@RequestMapping(value="/signIn")
 	public ModelAndView accesoLogin() {
 		ModelAndView modelo = new ModelAndView("login");
 		return modelo;
 	}
 	
+	
+	/*
+	 * REVISAR BIEN ESTE MÉTODO
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView entrar(@RequestParam("username") String username,
 			@RequestParam("password") String password,
@@ -46,25 +53,29 @@ public class ControladorVegetal {
 			ModelMap modelMap) 
 	{
 		ModelAndView modelo = null;
-		
+		Usuario u = dao.usuarioRegistrado(username, password);
 		//devolver objeto entero y ver si es distinto de null
-		if (dao.usuarioRegistrado("admin", password)){
+		if ( u != null){
 			//le pasamos los atributos que queramos para obtenerlos con el sessionScope
-			
-			session.setAttribute("username", username);
-			modelo=new ModelAndView("/index2");
-			List<Vegetal> lista = dao.listarVegetales();
-			modelo.addObject("lista",lista);
-			modelo.addObject("username", username);
+			session.setAttribute("user", u);
+			if(u.getUsername().equals("admin")) {
+				modelo=new ModelAndView("redirect:/listadoVegetal/0");
+				List<Vegetal> lista = dao.listarVegetales();
+				modelo.addObject("lista",lista);
+				modelo.addObject("username", username);
+			}
+			else{
+				List <Slide> listaSlides=dao.listarSlides();
+				List<Vegetal> listaTotal=dao.listarVegetales();
+				modelo=new ModelAndView("redirect:/listadoVegetales2/0");
+				modelo.addObject("listaSlides",listaSlides);
+				modelo.addObject("listaT",listaTotal);
+			}
 		}
-		else{
-			session.setAttribute("username", username);
-			List <Slide> listaSlides=dao.listarSlides();
-			List<Vegetal> listaTotal=dao.listarVegetales();
-			modelo=new ModelAndView("/index");
-			modelo.addObject("listaSlides",listaSlides);
-			modelo.addObject("listaT",listaTotal);
+		else {
+			modelo = new ModelAndView("redirect:/signIn");
 		}
+		
 
 		return modelo;
 	}
@@ -81,8 +92,26 @@ public class ControladorVegetal {
 		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
 			return "redirect:/signUp";
 		}
-		//dao.crearUsuario(user); //si todos los campos cumplen los requisistos se crea el usuario y se redirecciona 
-		return "redirect:/signIn";
+		else {
+			//dao.crearUsuario(user);
+			return "redirect:/signIn";
+		}
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("username");
+		return "login";
+	}
+	
+	/*
+	 * GESTIÓN DEL FRONT
+	 */
+	@RequestMapping(value="/carrito", method = RequestMethod.GET)
+	public ModelAndView irCarrito() {
+		ModelAndView modelo=new ModelAndView("carrito");
+		modelo.addObject("listaC",listaCarrito);
+		return modelo;
 	}
 
 	@RequestMapping(value="/listarVegetal")
@@ -122,13 +151,13 @@ public class ControladorVegetal {
 	}
 	
 	@RequestMapping(value="/carrito/{id}")
-	public ModelAndView carrito(@PathVariable int id ) {
+	public String carrito(@PathVariable int id ) {
 		//dao.aniadircarrito(id);
 		Vegetal producto=dao.buscarporId(id);
 		listaCarrito.add(producto);
-		ModelAndView modelo=new ModelAndView("/carrito");
-		modelo.addObject("listaC",listaCarrito);
-		return modelo;
+		//ModelAndView modelo=new ModelAndView("/listadoVegetales2/0");
+		//modelo.addObject("listaC",listaCarrito);
+		return "redirect:/listadoVegetales2/0";
 	}
 
 	@RequestMapping(value="listadoVegetales2/{pageId}")
@@ -156,9 +185,14 @@ public class ControladorVegetal {
 	}
 
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
-	public ModelAndView guardar(@ModelAttribute("veg") Vegetal veg) {
-		dao.guardar(veg);
-		return new ModelAndView("redirect:/listadoVegetal/0");
+	public String guardar(@Valid @ModelAttribute("veg") Vegetal veg, BindingResult result) {
+		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
+			return "redirect:/aniadirVegetal";
+		}
+		else {
+			dao.guardar(veg);
+			return "redirect:/listadoVegetal/0";
+		}
 	}
 
 	@RequestMapping("/listadoVeg")
@@ -195,6 +229,5 @@ public class ControladorVegetal {
 		ModelAndView modelo=new ModelAndView("/carrito");
 		modelo.addObject("listaC",listaCarrito);
 		return modelo;
-	
 	}
 }
