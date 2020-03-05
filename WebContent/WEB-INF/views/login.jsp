@@ -15,7 +15,14 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="listadoVegetales2/0">Volver</a>
+            <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">
+            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Fruteria-ADO/carrito">
+            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/>
+            	
+            </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#" disabled>Acceso
@@ -63,7 +70,7 @@
         </div>
     </div>
 	<!-- Footer -->
-  <footer class="py-5 bg-dark" style="position:absolute;bottom:0px;width:100%">
+  <footer class="py-5 bg-dark" style="position:absolute;width:100%;bottom:0px;">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
     </div>

@@ -23,25 +23,35 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">Volver</a>
+            <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">
+            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">
             	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/></a>
           </li>
-          
-          <li class="nav-item">
+          <c:if test="${sessionScope.user == null}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/signIn">Acceso</a>
+            </li>
+          </c:if>
+          <c:if test="${sessionScope.user != null}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/datos">Mis Datos</a>
+            </li>
+        	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/logout">Cerrar Sesion</a>
             </li>
+        </c:if>
         </ul>
       </div>
     </div>
   </nav>
-	<div class="container-fluid" >
-	<p></p><br />
-	<div class="row justify-content-center" >
+	<div class="container" >
+	<div><br /></div>
+	<div class="row text-center" >
  			
- 			<form:form method="post" action="/Fruteria-ADO/comprar">
+ 			<form:form method="post" action="/Fruteria-ADO/comprar" style="width:100%;">
  			
  				<table class="table table-dark table-striped">
   				<thead>
@@ -56,22 +66,30 @@
   				</thead>
   				<tbody>
   				<c:set var="suma" value="0" scope="page" />
-				<c:forEach items="${listaC}" var="cesta" varStatus="status">
+				<c:forEach items="${sessionScope.listaCarrito}" var="item" varStatus="status">
 				<tr>
-					<td>${cesta.id}</td>
-					<td>${cesta.nombre}</td>
-					<td>${cesta.categoria}</td>
+					<td>${item.id}</td>
+					<td>${item.nombre}</td>
+					<td>${item.categoria}</td>
 					<td>
-						<img width=50 height=50  src="https://augustobrigadaw.000webhostapp.com/resources2/img/${cesta.imagen}">
+						<img width=50 height=50  src="https://augustobrigadaw.000webhostapp.com/resources2/img/${item.imagen}">
 					</td>
-					<td>${cesta.precio}</td>
+					<td>${item.precio}</td>
 					<td>
-						<a href="/Fruteria-ADO/eliminarV/${cesta.id}" class="btn btn-danger">Quitar</a>
+						<a href="/Fruteria-ADO/eliminarV/${item.id}" class="btn btn-danger">Quitar</a>
 					</td>
-					<c:set var="suma" value="${suma + cesta.precio}" scope="page"/>
+					<c:set var="suma" value="${suma + item.precio}" scope="page"/>
 				</tr>
   				</c:forEach>
 				</tbody>
+				</table>
+				<table class="table table-dark">
+				<tr>
+					<th>
+						<td style="text-align:left;" colspan=3>Total</td>
+						<td>${suma}</td>
+					</th>
+				</tr>
 				</table>
    				<div class="form-group">
    					<h5><fmt:formatNumber type="number" maxFractionDigits="2" value="${suma}"/> &euro;</h5>
@@ -81,5 +99,12 @@
 		</div>
 		
 	</div>
+	
+	<footer class="py-5 bg-dark" style="position:absolute;width:100%;bottom:0px;">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 </body>
 </html>

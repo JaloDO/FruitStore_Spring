@@ -18,8 +18,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
         
-          <li class="nav-item">
-            <a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Volver</a>
+        <li class="nav-item">
+            <a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">
+            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Editar Vegetal
@@ -38,7 +39,7 @@
 		<p></p>
 		<div class="row justify-content-center align-items-center">
 			<div class="col-md-6">
-				<h4 class="text-center">Editar Vegetal</h4>
+				<h4 class="btn btn-success btn-lg btn-block" disabled>Editar Vegetal</h4>
 				<form:form method="post" commandName="command" action="../editarGuardar">
 				<div class="form-group">
 						<label for = "id">Id: </label>
@@ -78,7 +79,7 @@
 		</div>
 	</div>
 	<!-- Footer -->
-  <footer class="py-5 bg-dark" ">
+  <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
     </div>

@@ -26,7 +26,7 @@ import com.alejandro.Model.*;
 
 @Controller
 public class ControladorVegetal {
-	List <Vegetal> listaCarrito=new ArrayList<>();
+	//List <Vegetal> listaCarrito=new ArrayList<>();
 	@Autowired
 	VegetalDao dao;
 	//sin fichero adjunto
@@ -112,9 +112,9 @@ public class ControladorVegetal {
 	 * GESTIÓN DEL FRONT
 	 */
 	@RequestMapping(value="/carrito", method = RequestMethod.GET)
-	public ModelAndView irCarrito() {
+	public ModelAndView irCarrito(HttpSession session) {
 		ModelAndView modelo=new ModelAndView("carrito");
-		modelo.addObject("listaC",listaCarrito);
+		//modelo.addObject("listaC",listaCarrito);
 		return modelo;
 	}
 
@@ -155,10 +155,19 @@ public class ControladorVegetal {
 	}
 	
 	@RequestMapping(value="/carrito/{id}")
-	public String carrito(@PathVariable int id ) {
+	public String carrito(@PathVariable int id, HttpSession session ) {
 		
 		Vegetal producto=dao.buscarporId(id);
-		listaCarrito.add(producto);
+		List<Vegetal> listaCarrito;
+		if(session.getAttribute("listaCarrito")!=null) {
+			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
+			listaCarrito.add(producto);
+			session.setAttribute("listaCarrito", listaCarrito);
+		}else {
+			listaCarrito = new ArrayList<Vegetal>();
+			listaCarrito.add(producto);
+		}
+		System.out.println("Size carrito: "+listaCarrito.size());
 		return "redirect:/listadoVegetales2/0";
 	}
 

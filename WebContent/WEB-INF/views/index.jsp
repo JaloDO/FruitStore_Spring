@@ -39,12 +39,6 @@
             <a class="nav-link" href="/Fruteria-ADO/carrito">
             	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/></a>
           </li>
-
-          <c:if test="${sessionScope.user.username == 'admin'}">
-        	<li class="nav-item">
-            	<a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Back</a>
-            </li>
-        </c:if>
         <c:if test="${sessionScope.user == null}">
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/signIn">Acceso</a>
@@ -54,6 +48,11 @@
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/datos">Mis Datos</a>
             </li>
+            <c:if test="${sessionScope.user.username == 'admin'}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Back</a>
+            </li>
+        	</c:if>
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/logout">Cerrar Sesion</a>
             </li>
