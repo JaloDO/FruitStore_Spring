@@ -35,39 +35,48 @@
       </div>
     </div>
   </nav>
- <div class="container">
- <div class="row text-center">
- 	<p></p>
-  <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Producto</th>
-      <th scope="col">Categoría</th>
-      <th scope="col">Imagen</th>
-      <th scope="col">Precio</th>
-      <th scole="col">Eliminar</th>
-    </tr>
-  </thead>
-  <tbody>
-   
-  <c:set var="suma" value="0" scope="page" />
-  <c:forEach items="${listaC}" var="cesta" varStatus="status">
   
-  <tr>
-  <td>${cesta.id}</td>
-  <td>${cesta.nombre}</td>
-  <td>${cesta.categoria}</td>
-  <td><img width=50 height=50  src="https://augustobrigadaw.000webhostapp.com/resources2/img/${cesta.imagen}"></td>
-  <td>${cesta.precio}</td>
-  <td><a href="../eliminarV/${cesta.id}">Quitar</a></td>
-    <c:set var="suma" value="${suma + cesta.precio}" scope="page"/>
-   
-  </c:forEach>
-  </tbody>
-   </table>
-   <h5><fmt:formatNumber type="number" maxFractionDigits="2" value="${suma}"/> &euro;</h5>
- </div>
- </div> 
+  
+	<div class="container">
+		<div class="row text-center">
+ 			<p></p>
+ 			<form:form method="post" action="/Fruteria-ADO/comprar">
+ 				<table class="table table-dark">
+  				<thead>
+    			<tr>
+      				<th scope="col">ID</th>
+      				<th scope="col">Producto</th>
+      				<th scope="col">Categoría</th>
+      				<th scope="col">Imagen</th>
+      				<th scope="col">Precio</th>
+      				<th scole="col">Eliminar</th>
+    			</tr>
+  				</thead>
+  				<tbody>
+  				<c:set var="suma" value="0" scope="page" />
+				<c:forEach items="${listaC}" var="cesta" varStatus="status">
+				<tr>
+					<td>${cesta.id}</td>
+					<td>${cesta.nombre}</td>
+					<td>${cesta.categoria}</td>
+					<td>
+						<img width=50 height=50  src="https://augustobrigadaw.000webhostapp.com/resources2/img/${cesta.imagen}">
+					</td>
+					<td>${cesta.precio}</td>
+					<td>
+						<a href="../eliminarV/${cesta.id}">Quitar</a>
+					</td>
+					<c:set var="suma" value="${suma + cesta.precio}" scope="page"/>
+				</tr>
+  				</c:forEach>
+				</tbody>
+				</table>
+   				<div class="form-group">
+   					<h5><fmt:formatNumber type="number" maxFractionDigits="2" value="${suma}"/> &euro;</h5>
+					<input type="submit" value="Modificar" class="btn btn-success"/>
+				</div>
+			</form:form>
+		</div>
+	</div>
 </body>
 </html>
