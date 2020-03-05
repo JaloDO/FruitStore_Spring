@@ -36,8 +36,8 @@
 
 
 
-
-   <div id="login">
+<div id="general_container" style="position:relative;">
+   <div id="login" style="min-height:80vh;">
         <h3 class="text-center text-white pt-5"> <br/><br/></h3>
         
 	     ${error}
@@ -70,13 +70,12 @@
         </div>
     </div>
 	<!-- Footer -->
-  <footer class="py-5 bg-dark" style="position:absolute;width:100%;bottom:0px;">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
-    </div>
+  <footer class="py-5 bg-dark" style="position:relative;width:100%;bottom:0;">
+    		<div class="container">
+      			<p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+   		 </div>
     <!-- /.container -->
   </footer>
-	
-
+	</div>
 </body>
 </html>

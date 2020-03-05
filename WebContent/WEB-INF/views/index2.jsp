@@ -41,8 +41,8 @@
 
 
 
-
-<div class="container-fluid">
+<div id="general_container" style="position:relative;">
+<div class="container-fluid" style="min-height:80vh;">
 	<p></p>
 	<div class="row-fluid">
 		<div class="col-md-6">
@@ -104,11 +104,12 @@
 </div>
 
 <!-- Footer -->
-  <footer class="py-5 bg-dark" style="position:absolute;bottom:0px;width:100%">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
-    </div>
+  <footer class="py-5 bg-dark" style="position:relative;width:100%;bottom:0;">
+    		<div class="container">
+      			<p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+   		 </div>
     <!-- /.container -->
   </footer>
+	</div>
 </body>
 </html>

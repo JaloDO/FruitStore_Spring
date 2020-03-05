@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 
 
 <!DOCTYPE html>
@@ -47,12 +48,14 @@
       </div>
     </div>
   </nav>
-	<div class="container" >
+  <div id="general_container" style="position:relative;">
+	<div class="container" style="min-height:80vh;">
 	<div><br /></div>
 	<div class="row text-center" >
  			
  			<form:form method="post" action="/Fruteria-ADO/comprar" style="width:100%;">
- 			
+ 				<!-- gobernamos el formulario en funcion de si el carrito tiene elementos -->
+ 				<c:if test="${not empty sessionScope.listaCarrito}">
  				<table class="table table-dark table-striped">
   				<thead>
     			<tr>
@@ -61,7 +64,7 @@
       				<th scope="col">Categoría</th>
       				<th scope="col">Imagen</th>
       				<th scope="col">Precio</th>
-      				<th scole="col">Eliminar</th>
+      				<th scope="col">Eliminar</th>
     			</tr>
   				</thead>
   				<tbody>
@@ -74,37 +77,47 @@
 					<td>
 						<img width=50 height=50  src="https://augustobrigadaw.000webhostapp.com/resources2/img/${item.imagen}">
 					</td>
-					<td>${item.precio}</td>
+					<td>${item.precio} &euro;</td>
 					<td>
 						<a href="/Fruteria-ADO/eliminarV/${item.id}" class="btn btn-danger">Quitar</a>
 					</td>
 					<c:set var="suma" value="${suma + item.precio}" scope="page"/>
 				</tr>
   				</c:forEach>
-				</tbody>
-				</table>
-				<table class="table table-dark">
-				<tr>
+  				<!--  aqui va la magia -->
+  				<tr>
 					<th>
-						<td style="text-align:left;" colspan=3>Total</td>
-						<td>${suma}</td>
+						<td style="text-align:left;" colspan=3>TOTAL</td>
+						<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${suma}"/> &euro;</td>
+						<td>
+							<a href="/Fruteria-ADO/eliminarTodo" class="btn btn-danger">Quitar Todo</a>
+						</td>
 					</th>
 				</tr>
+				</tbody>
 				</table>
    				<div class="form-group">
-   					<h5><fmt:formatNumber type="number" maxFractionDigits="2" value="${suma}"/> &euro;</h5>
 					<input type="submit" value="Comprar" class="btn btn-success"/>
 				</div>
+				</c:if>
+				<c:if test="${empty sessionScope.listaCarrito}">
+				<label class="badge badge-danger" style="width:100%;font-size:3em;">No te gusta nada!</label>
+				<img src="https://www.pngitem.com/pimgs/m/102-1025083_worry-svg-png-icon-free-download-black-sad.png" width=50% />
+				</c:if>
 			</form:form>
+			
+			<!--  
+				//////////////////////////////// FIN DEL FORMULARIO /////////////////////////////////////
+			 -->
 		</div>
-		
-	</div>
-	
-	<footer class="py-5 bg-dark" style="position:absolute;width:100%;bottom:0px;">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
-    </div>
+		</div>
+		<footer class="py-5 bg-dark" style="position:relative;width:100%;bottom:0;">
+    		<div class="container">
+      			<p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+   		 </div>
     <!-- /.container -->
   </footer>
+	</div>
+	
 </body>
 </html>

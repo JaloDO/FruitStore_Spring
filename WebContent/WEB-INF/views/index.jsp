@@ -26,7 +26,7 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
+    <div class="container" >
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
@@ -64,7 +64,8 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div id="general_container" style="position:relative;">
+  <div class="container" style="min-height:80vh;">
     <div class="row">	
       <div class="col-lg-3">
       	<div>
@@ -171,13 +172,13 @@
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
-    </div>
+  <footer class="py-5 bg-dark" style="position:relative;width:100%;bottom:0;">
+    		<div class="container">
+      			<p class="m-0 text-center text-white">Copyright &copy; FruitStore ADO 2020</p>
+   		 </div>
     <!-- /.container -->
   </footer>
+	</div>
 
   <!-- Bootstrap core JavaScript -->
     <script src="https://augustobrigadaw.000webhostapp.com/resources2/vendor/jquery/jquery.js"></script>

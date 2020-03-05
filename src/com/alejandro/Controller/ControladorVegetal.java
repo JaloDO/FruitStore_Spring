@@ -114,7 +114,6 @@ public class ControladorVegetal {
 	@RequestMapping(value="/carrito", method = RequestMethod.GET)
 	public ModelAndView irCarrito(HttpSession session) {
 		ModelAndView modelo=new ModelAndView("carrito");
-		//modelo.addObject("listaC",listaCarrito);
 		return modelo;
 	}
 
@@ -158,7 +157,8 @@ public class ControladorVegetal {
 	public String carrito(@PathVariable int id, HttpSession session ) {
 		
 		Vegetal producto=dao.buscarporId(id);
-		List<Vegetal> listaCarrito;
+		System.out.println(producto.toString());
+		List<Vegetal> listaCarrito = null;
 		if(session.getAttribute("listaCarrito")!=null) {
 			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
 			listaCarrito.add(producto);
@@ -166,16 +166,16 @@ public class ControladorVegetal {
 		}else {
 			listaCarrito = new ArrayList<Vegetal>();
 			listaCarrito.add(producto);
+			session.setAttribute("listaCarrito", listaCarrito);
 		}
 		System.out.println("Size carrito: "+listaCarrito.size());
 		return "redirect:/listadoVegetales2/0";
 	}
 
 	@RequestMapping(value="listadoVegetales2/{pageId}")
-	public ModelAndView listadoVegetales2(@PathVariable int pageId) {
+	public ModelAndView listadoVegetales2(@PathVariable int pageId, HttpSession session) {
 		int total=6;
 		pageId=(pageId)*total+1;
-		System.out.println("comienza en: "+pageId);
 		List <Vegetal> listaFiltro = dao.listarVegetalesPorPaginas(pageId, total);
 		List <Vegetal> listaTotal=dao.listarVegetales();
 		List <Slide> listaSlides=dao.listarSlides();
@@ -252,14 +252,29 @@ public class ControladorVegetal {
 	}
 	
 	@RequestMapping(value="/eliminarV/{id}",method=RequestMethod.GET)
-	public ModelAndView eliminiarV(@PathVariable int id) {
-		for(int i=0;i<listaCarrito.size();i++) {
-			if (listaCarrito.get(i).getId()==id) {
-				listaCarrito.remove(i);
+	public ModelAndView eliminiarV(@PathVariable int id, HttpSession session) {
+		System.out.println("Eliminar vegetal id: "+id);
+		List<Vegetal> listaCarrito = null;
+		
+		try {
+			
+		if(session.getAttribute("listaCarrito")!=null) 
+		{
+			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
+			int cont=0;
+			for(Vegetal v: listaCarrito){
+				if(v.getId()==id){
+					System.out.println("eliminado: "+listaCarrito.get(cont).toString());
+					listaCarrito.remove(cont);
+				}
+				cont++;
+			}
+			if(listaCarrito.size()!=0) {
+				session.setAttribute("listaCarrito", listaCarrito);
 			}
 		}
-		ModelAndView modelo=new ModelAndView("/carrito");
-		modelo.addObject("listaC",listaCarrito);
-		return modelo;
+		}catch(Exception e) {}
+		
+		return new ModelAndView("redirect:/carrito");
 	}
 }

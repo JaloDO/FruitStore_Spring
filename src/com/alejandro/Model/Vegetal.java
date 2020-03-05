@@ -71,5 +71,12 @@ public Vegetal(int id, String nombre, String categoria, String imagen, float pre
 	this.procedencia = procedencia;
 }
 
+@Override
+public String toString() {
+	return "Vegetal [id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + ", procedencia=" + procedencia
+			+ ", imagen=" + imagen + ", precio=" + precio + "]";
+}
+
+
 
 }
