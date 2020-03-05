@@ -37,31 +37,31 @@
 		<div class="row justify-content-center align-items-center">
 			<div class="col-md-6">
 				<h3 class="text-center text-info">Regístrate</h3>
-				<form:form method="post" action="registrar">
+				<form:form method="post" commandName="command" action="registrar">
 					<div class="form-group">
-						<label for = "username" class="text-info">Nombre de usuario: </label>
+						<label for = "username" class="text-info">Usuario: </label>
 						<form:input path="username" class="form-control"/>
-						<form:errors path="username" cssClass="error"/>
+						<form:errors path="username"/>
 					</div>
 					<div class="form-group">
 						<label for = "password" class="text-info">Contraseña: </label>
 						<form:input type="password" path="password" class="form-control"/>
-						<form:errors path="password" cssClass="error"/>
+						<form:errors path="password"/>
 					</div>
 					<div class="form-group">
 						<label for = "email" class="text-info">Email: </label>
 						<form:input path="email" class="form-control"/>
-						<form:errors path="email" cssClass="error"/>
+						<form:errors path="email"/>
 					</div>
 					<div class="form-group">
 						<label for = "name" class="text-info">Nombre: </label>
 						<form:input path="name" class="form-control"/>
-						<form:errors path="name" cssClass="error"/>
+						<form:errors path="name"/>
 					</div>
 					<div class="form-group">
 						<label for ="age" class="text-info">Edad:</label>
 						<form:input path="age" class="form-control"/>
-						<form:errors path="age" cssClass="error"/>
+						<form:errors path="age"/>
 					</div>
 					<div class="form-group text-center">
 						<input type="submit" value="Registrar" class="btn btn-info btn-md"/>

@@ -42,11 +42,11 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Usuario:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+                                <input type="text" id="username" name="username" class="form-control" />             
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" id="password" name="password" class="form-control" /> 
                             </div>
                             <div class="form-group text-center">
                                

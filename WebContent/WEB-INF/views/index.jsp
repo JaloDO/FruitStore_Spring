@@ -36,20 +36,24 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Fruteria-ADO/carrito">Carrito</a>
+            <a class="nav-link" href="/Fruteria-ADO/carrito">
+            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/></a>
           </li>
 
-          <c:if test="${sessionScope.username == 'admin'}">
+          <c:if test="${sessionScope.user.username == 'admin'}">
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/listadoVegetal/0">Back</a>
             </li>
         </c:if>
-        <c:if test="${sessionScope.username == null}">
+        <c:if test="${sessionScope.user == null}">
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/signIn">Acceso</a>
             </li>
         </c:if>
-        <c:if test="${sessionScope.username != null}">
+        <c:if test="${sessionScope.user != null}">
+        	<li class="nav-item">
+            	<a class="nav-link" href="/Fruteria-ADO/datos">Mis Datos</a>
+            </li>
         	<li class="nav-item">
             	<a class="nav-link" href="/Fruteria-ADO/logout">Cerrar Sesion</a>
             </li>
@@ -66,8 +70,8 @@
       <div class="col-lg-3">
       	<div>
         <h1 class="my-4">La frutería</h1>
-        <c:if test="${sessionScope.username != null}">
-			<h4 class="nav-item">${sessionScope.username}</h4>
+        <c:if test="${sessionScope.user != null}">
+			<h4 class="nav-item">${sessionScope.user.username}</h4>
 		</c:if>
 		</div>
         <div class="list-group">

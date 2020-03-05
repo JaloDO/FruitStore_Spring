@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class Usuario {
 
 	@NotEmpty(message="Campo obligatorio")
-	@Size(min = 6, max = 14, message="Debe tener entre 6 y 14 caracteres")
+	@Size(min = 5, max = 14, message="Debe tener entre 6 y 14 caracteres")
 	private String username;
 	
 	@NotEmpty(message="Campo obligatorio")
@@ -79,6 +79,12 @@ public class Usuario {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [username=" + username + ", password=" + password + ", email=" + email + ", name=" + name
+				+ ", age=" + age + "]";
 	}
 	
 	

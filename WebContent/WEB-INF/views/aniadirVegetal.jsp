@@ -39,31 +39,31 @@
 		<div class="row justify-content-center align-items-center">
 			<div class="col-md-6">
 				<h4 class="text-center">Agregar Nuevo Vegetal</h4>
-				<form:form method="post" action="guardar">
+				<form:form method="post" commandName="command" action="guardar">
 					<div class="form-group">
 						<label for = "nombre">Nombre: </label>
 						<form:input path="nombre" class="form-control"/>
-						<form:errors path="nombre" cssClass="error"/>
+						<form:errors path="nombre"/>
 					</div>
 					<div class="form-group">
 						<label for = "categoria">Categoría: </label>
 						<form:input path="categoria" class="form-control"/>
-						<form:errors path="categoria" cssClass="error"/>
+						<form:errors path="categoria"/>
 					</div>
 					<div class="form-group">
 						<label for = "procedencia">Procedencia: </label>
 						<form:input path="procedencia" class="form-control"/>
-						<form:errors path="procedencia" cssClass="error"/>
+						<form:errors path="procedencia"/>
 					</div>
 					<div class="form-group">
 						<label for = "imagen">Imagen: </label>
 						<form:input path="imagen" class="form-control"/>
-						<form:errors path="imagen" cssClass="error"/>
+						<form:errors path="imagen" />
 					</div>
 					<div class="form-group">
 						<label for ="precio">Precio:</label>
 						<form:input path="precio" class="form-control"/>
-						<form:errors path="precio" cssClass="error"/>
+						<form:errors path="precio"/>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

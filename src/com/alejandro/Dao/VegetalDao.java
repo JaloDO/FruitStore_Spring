@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -122,6 +124,7 @@ public class VegetalDao {
 				+ " where id=?",
 				v.getNombre(),v.getCategoria(),v.getProcedencia(),v.getImagen(),v.getPrecio(),v.getId()
 				);
+			
 		}
 
 			 public int eliminar(int id) {
@@ -137,9 +140,49 @@ public class VegetalDao {
 			  return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Vegetal>(Vegetal.class));
 			 }
 			 
-		public Usuario usuarioRegistrado(String user,String password) {
-			String sql = "select from user where username="+user+" and password="+password+"";
-			return template.queryForObject(sql, Usuario.class);
+		public List<Usuario> usuarioRegistrado(String user,String password) {
+			
+			return template.query("select * from user where usuario = '"+user+"'and clave='"+password+"'", new RowMapper<Usuario>() {
+				@Override
+				public Usuario mapRow(ResultSet rs, int row) throws SQLException
+				{
+					Usuario u=new Usuario();
+					u.setUsername(rs.getString(1));
+					u.setPassword(rs.getString(2));
+					u.setEmail(rs.getString(3));
+					u.setName(rs.getString(4));
+					u.setAge(rs.getInt(5));
+					return u;
+				}
+				
+				
+			}
+			);
+		}
+
+		
+		public int crearUsuario(@Valid Usuario user) {
+			return  template.update("insert into user"
+					+ "(usuario,clave,mail,nombre,edad) "
+					+ "values (?,?,?,?,?)",
+					user.getUsername(),
+					user.getPassword(),
+					user.getEmail(),
+					user.getName(),
+					user.getAge()
+				);
+		}
+
+		public int modificarUsuario(@Valid Usuario user) {
+			return  template.update("update user set (usuario,clave,mail,nombre,edad) "
+					+ "values (?,?,?,?,?)",
+					user.getUsername(),
+					user.getPassword(),
+					user.getEmail(),
+					user.getName(),
+					user.getAge()
+				);
+			
 		}
 	}
 

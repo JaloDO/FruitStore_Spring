@@ -53,16 +53,19 @@ public class ControladorVegetal {
 			ModelMap modelMap) 
 	{
 		ModelAndView modelo = null;
-		Usuario u = dao.usuarioRegistrado(username, password);
+		List<Usuario>usuarios = dao.usuarioRegistrado(username, password);
+		Usuario u = null;
+		u = usuarios.get(0);
+		System.out.println(u);
 		//devolver objeto entero y ver si es distinto de null
-		if ( u != null){
+		if ( u.getName() != null){
+			
 			//le pasamos los atributos que queramos para obtenerlos con el sessionScope
 			session.setAttribute("user", u);
 			if(u.getUsername().equals("admin")) {
 				modelo=new ModelAndView("redirect:/listadoVegetal/0");
 				List<Vegetal> lista = dao.listarVegetales();
 				modelo.addObject("lista",lista);
-				modelo.addObject("username", username);
 			}
 			else{
 				List <Slide> listaSlides=dao.listarSlides();
@@ -93,14 +96,15 @@ public class ControladorVegetal {
 			return "redirect:/signUp";
 		}
 		else {
-			//dao.crearUsuario(user);
+			int p = dao.crearUsuario(user);
+			System.out.println("registrar: "+p);
 			return "redirect:/signIn";
 		}
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		session.removeAttribute("username");
+		session.removeAttribute("user");
 		return "login";
 	}
 	
@@ -152,11 +156,9 @@ public class ControladorVegetal {
 	
 	@RequestMapping(value="/carrito/{id}")
 	public String carrito(@PathVariable int id ) {
-		//dao.aniadircarrito(id);
+		
 		Vegetal producto=dao.buscarporId(id);
 		listaCarrito.add(producto);
-		//ModelAndView modelo=new ModelAndView("/listadoVegetales2/0");
-		//modelo.addObject("listaC",listaCarrito);
 		return "redirect:/listadoVegetales2/0";
 	}
 
@@ -173,6 +175,27 @@ public class ControladorVegetal {
 		modelo.addObject("listaT",listaTotal);
 		modelo.addObject("listaSlides",listaSlides);
 		return modelo;
+	}
+	
+	//modificar datos
+	@RequestMapping(value="/datos", method = RequestMethod.GET)
+	public ModelAndView irDatos(HttpSession session) {
+		Usuario u = (Usuario) session.getAttribute("user");
+		return new ModelAndView("modificar", "command", u);
+	}
+	
+	@RequestMapping(value="/modificarUsuario", method = RequestMethod.POST)
+	public String modificarUsuario(@Valid @ModelAttribute("user") Usuario user,BindingResult result) {
+
+		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
+			return "redirect:/datos";
+		}
+		else {
+			int p = dao.modificarUsuario(user);
+			System.out.println("Modificar: "+p);
+			return "redirect:/listadoVegetales2/0";
+		}
+		
 	}
 	
 	
@@ -209,7 +232,7 @@ public class ControladorVegetal {
 
 	@RequestMapping(value = "/editarGuardar", method = RequestMethod.POST)
 	public ModelAndView editarGuardar(@ModelAttribute("vegetal") Vegetal veg) {
-		dao.actualizar(veg);
+		System.out.println(dao.actualizar(veg));
 		return new ModelAndView("redirect:listadoVegetal/0");
 	}
 

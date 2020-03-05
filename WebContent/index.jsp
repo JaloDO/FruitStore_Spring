@@ -9,6 +9,8 @@
 <title>Inicio</title>
 </head>
 <body>
+	<% response.sendRedirect("listadoVegetales2/0"); %>
+	<!-- 
 	<table width="80%" align="center">
 		<tr>
 			<td><a href="listadoVegetales2/0">Front</a></td>
@@ -17,5 +19,6 @@
 			
 		</tr>
 	</table>
+	-->
 </body>
 </html>
