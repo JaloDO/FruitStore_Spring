@@ -18,13 +18,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Lista Vegetales
+            <a class="nav-link" href="#">Vegetales
               <span class="sr-only">(current)</span>
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="/Fruteria-ADO/aniadirVegetal">Nuevo Vegetal</a>
+            <a class="nav-link" href="/Fruteria-ADO/aniadirVegetal">A&ntilde;adir</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">Tienda</a>

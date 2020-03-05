@@ -109,13 +109,43 @@ public class ControladorVegetal {
 	}
 	
 	/*
-	 * GESTIÓN DEL FRONT
+	 * GESTION DEL CARRITO
 	 */
 	@RequestMapping(value="/carrito", method = RequestMethod.GET)
 	public ModelAndView irCarrito(HttpSession session) {
 		ModelAndView modelo=new ModelAndView("carrito");
 		return modelo;
 	}
+	
+	@RequestMapping(value="/carrito/{id}")
+	public String carrito(@PathVariable int id, HttpSession session ) {
+		
+		Vegetal producto=dao.buscarporId(id);
+		System.out.println(producto.toString());
+		List<Vegetal> listaCarrito = null;
+		if(session.getAttribute("listaCarrito")!=null) {
+			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
+			listaCarrito.add(producto);
+			session.setAttribute("listaCarrito", listaCarrito);
+		}else {
+			listaCarrito = new ArrayList<Vegetal>();
+			listaCarrito.add(producto);
+			session.setAttribute("listaCarrito", listaCarrito);
+		}
+		System.out.println("Size carrito: "+listaCarrito.size());
+		return "redirect:/listadoVegetales2/0";
+	}
+	
+	@RequestMapping(value="/eliminarTodo", method = RequestMethod.GET)
+	public String borrarCarrito(HttpSession session) {
+		session.removeAttribute("listaCarrito");
+		return "redirect:/carrito";
+	}
+	
+	/*
+	 * GESTIÓN DEL FRONT
+	 */
+
 
 	@RequestMapping(value="/listarVegetal")
 	public ModelAndView ListarVegetal() {
@@ -153,24 +183,8 @@ public class ControladorVegetal {
 		return modelo;
 	}
 	
-	@RequestMapping(value="/carrito/{id}")
-	public String carrito(@PathVariable int id, HttpSession session ) {
-		
-		Vegetal producto=dao.buscarporId(id);
-		System.out.println(producto.toString());
-		List<Vegetal> listaCarrito = null;
-		if(session.getAttribute("listaCarrito")!=null) {
-			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
-			listaCarrito.add(producto);
-			session.setAttribute("listaCarrito", listaCarrito);
-		}else {
-			listaCarrito = new ArrayList<Vegetal>();
-			listaCarrito.add(producto);
-			session.setAttribute("listaCarrito", listaCarrito);
-		}
-		System.out.println("Size carrito: "+listaCarrito.size());
-		return "redirect:/listadoVegetales2/0";
-	}
+	
+	
 
 	@RequestMapping(value="listadoVegetales2/{pageId}")
 	public ModelAndView listadoVegetales2(@PathVariable int pageId, HttpSession session) {

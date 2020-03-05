@@ -20,7 +20,7 @@
             	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nuevo Vegetal
+            <a class="nav-link" href="#">A&ntilde;adir Vegetal
             	<span class="sr-only">(current)</span>
             </a>
           </li>
