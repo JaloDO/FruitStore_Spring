@@ -4,9 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap core CSS -->
+  <link href="https://augustobrigadaw.000webhostapp.com/resources2/bootstrap.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+  <link href="https://augustobrigadaw.000webhostapp.com/resources2/css/shop-homepage.css" rel="stylesheet">
 </head>
 <body style="background-color:#f7f7ff;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -59,11 +60,12 @@
                                
                                 <input type="submit" name="submit" value="Aceptar" class="btn btn-info btn-md" value="submit">
                             </div>
-                        </form>
-                        <div class="form-group text-center">
+                            <div class="form-group text-center">
                                
-                                <a href="/Fruteria-ADO/signUp" class="stretched-link" value="ir a registro">Todavía no tengo cuenta</a>
+                                <a href="/Fruteria-ADO/signUp" class="link" value="ir a registro">Todavía no tengo cuenta</a>
                             </div>
+                        </form>
+                        
                     </div>
                 </div>
             </div>

@@ -174,13 +174,17 @@ public class VegetalDao {
 		}
 
 		public int modificarUsuario(@Valid Usuario user) {
-			return  template.update("update user set (usuario,clave,mail,nombre,edad) "
-					+ "values (?,?,?,?,?)",
-					user.getUsername(),
+			return  template.update("update user set "
+					+ "clave = ?,"
+					+ "mail = ?,"
+					+ "nombre = ?,"
+					+ "edad = ? "
+					+ "where usuario = ?",
 					user.getPassword(),
 					user.getEmail(),
 					user.getName(),
-					user.getAge()
+					user.getAge(),
+					user.getUsername()
 				);
 			
 		}

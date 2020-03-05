@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -31,7 +34,7 @@ public class ControladorVegetal {
 	VegetalDao dao;
 	//sin fichero adjunto
 	@Autowired
-	MailSender mailSender;
+	JavaMailSender emailSender;
 
 	/*
 	 * GESTIÓN DEL SESION
@@ -90,7 +93,7 @@ public class ControladorVegetal {
 	}
 	
 	@RequestMapping(value="/registrar",method=RequestMethod.POST)
-	public String registrar(@Valid @ModelAttribute("user") Usuario user,BindingResult result) {
+	public String registrar(@Valid @ModelAttribute("user") Usuario user,BindingResult result, HttpSession session) {
 
 		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
 			return "redirect:/signUp";
@@ -98,6 +101,14 @@ public class ControladorVegetal {
 		else {
 			int p = dao.crearUsuario(user);
 			System.out.println("registrar: "+p);
+			session.setAttribute("user", user);
+			try {
+				mensajeInformativo(session);
+				session.removeAttribute("user");
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "redirect:/signIn";
 		}
 	}
@@ -208,21 +219,39 @@ public class ControladorVegetal {
 	}
 	
 	@RequestMapping(value="/modificarUsuario", method = RequestMethod.POST)
-	public String modificarUsuario(@Valid @ModelAttribute("user") Usuario user,BindingResult result) {
-
+	public String modificarUsuario(@Valid @ModelAttribute("user") Usuario user,BindingResult result, HttpSession session) {
+		Usuario u = (Usuario) session.getAttribute("user");
+		System.out.println("User sesion: "+u.toString());
+		System.out.println("User modificado: "+user.toString());
 		if(result.hasErrors()){  //si hay error en algún campo, se retorna de nuevo al formulario con avisos en rojo
 			return "redirect:/datos";
 		}
 		else {
-			int p = dao.modificarUsuario(user);
-			System.out.println("Modificar: "+p);
+			if(user.getAge()!=u.getAge() 
+					|| !user.getEmail().equals(u.getEmail()) 
+					|| !user.getName().equals(u.getName()) 
+					|| !user.getPassword().equals(u.getPassword())) {
+				//se ha modificado algún dato
+				int p = dao.modificarUsuario(user);
+				//actualizar el usuario en la sesion
+				session.setAttribute("user", user);
+				//enviar mensaje informativo
+				try {
+					mensajeInformativo(session);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else {
+				return "redirect:/datos";
+			}
 			return "redirect:/listadoVegetales2/0";
 		}
-		
 	}
+
 	
-	
-/*
+	/*
  * gestión del back
  * */
 	@RequestMapping("/aniadirVegetal")
@@ -291,4 +320,32 @@ public class ControladorVegetal {
 		
 		return new ModelAndView("redirect:/carrito");
 	}
+	
+	
+	/*
+	 *  MENSAJES
+	 */
+	
+	private void mensajeInformativo(HttpSession session) throws MessagingException {
+		Usuario destino = (Usuario) session.getAttribute("user");
+		MimeMessage mimeMessage = emailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+		helper.setFrom("adofruteria@gmail.com");
+		helper.setTo(destino.getEmail());
+		helper.setSubject("FRUTERIA ADO - TU INFORMACION");
+		String contenido = 
+				"<h2>Datos de tu cuenta</h2>"
+				+"<div>"
+				+"<ul>"
+				+ "<li>Usuario, '"+destino.getUsername()+"'.</li>"
+				+ "<li>Contrase&ntilde;a, '"+destino.getPassword()+"'.</li>"
+				+ "<li>Email, '"+destino.getEmail()+"'.</li>"
+				+ "<li>Nombre, '"+destino.getUsername()+"'.</li>"
+				+ "<li>Edad, '"+destino.getAge()+"'.</li></ul>"
+				+"</div>";
+		helper.setText(contenido, true);
+		emailSender.send(mimeMessage);
+		
+	}
+
 }
