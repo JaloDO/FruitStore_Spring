@@ -342,7 +342,7 @@ public class ControladorVegetal {
 		System.out.println("Eliminar vegetal id: "+id);
 		List<Vegetal> listaCarrito = null;
 		try {
-			
+			session.removeAttribute("ruta");
 		if(session.getAttribute("listaCarrito")!=null) 
 		{
 			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
@@ -361,6 +361,8 @@ public class ControladorVegetal {
 		}
 		
 		}catch(Exception e) {
+			String ruta="https://www.meme-arsenal.com/memes/32e6ea8ef744f2354bacb4510e033a8d.jpg";
+			session.setAttribute("ruta", ruta);
 			return new ModelAndView("redirect:/carrito");
 		}
 		

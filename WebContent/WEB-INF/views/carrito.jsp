@@ -113,6 +113,7 @@
 						<img src="https://cdn.memegenerator.es/imagenes/memes/full/19/28/19281144.jpg" width=50% />
 					</c:if>
 				</c:if>
+				<!-- <img src="${sessionScope.ruta}" width=50% /> -->
 			</form:form>
 			
 			<!--  
