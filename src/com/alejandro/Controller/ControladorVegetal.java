@@ -51,12 +51,14 @@ public class ControladorVegetal {
 	 * REVISAR BIEN ESTE MÉTODO
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView entrar(@RequestParam("username") String username,
+	public ModelAndView entrar( @RequestParam("username") String username,
 			@RequestParam("password") String password,
 			HttpSession session,
 			ModelMap modelMap) 
 	{
 		ModelAndView modelo = null;
+		try {
+		
 		List<Usuario>usuarios = dao.usuarioRegistrado(username, password);
 		Usuario u = null;
 		u = usuarios.get(0);
@@ -82,9 +84,12 @@ public class ControladorVegetal {
 		else {
 			modelo = new ModelAndView("redirect:/signIn");
 		}
-		
-
+		}
+		catch(Exception e) {
+			return new ModelAndView("redirect:/signIn");
+		}
 		return modelo;
+		
 	}
 	
 	@RequestMapping(value="/signUp", method = RequestMethod.GET)
@@ -336,7 +341,6 @@ public class ControladorVegetal {
 	public ModelAndView eliminiarV(@PathVariable int id, HttpSession session) {
 		System.out.println("Eliminar vegetal id: "+id);
 		List<Vegetal> listaCarrito = null;
-		
 		try {
 			
 		if(session.getAttribute("listaCarrito")!=null) 
@@ -355,7 +359,10 @@ public class ControladorVegetal {
 				session.setAttribute("listaCarrito", listaCarrito);
 			}
 		}
-		}catch(Exception e) {}
+		
+		}catch(Exception e) {
+			return new ModelAndView("redirect:/carrito");
+		}
 		
 		return new ModelAndView("redirect:/carrito");
 	}

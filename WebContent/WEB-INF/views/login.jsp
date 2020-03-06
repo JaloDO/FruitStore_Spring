@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" id="password" name="password" class="form-control" placeholder="6 a 14 caracteres"/> 
+                                <input type="password" id="password" name="password"  class="form-control" placeholder="6 a 14 caracteres"/> 
                             </div>
                             <div class="form-group text-center">
                                

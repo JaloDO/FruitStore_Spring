@@ -110,10 +110,9 @@
 					</c:if>
 					<c:if test="${sessionScope.comprado == true}">
 						<label class="badge badge-success" style="width:100%;font-size:3em;">Gracias por tu compra!</label>
-						<img src="https://i.pinimg.com/originals/ee/36/6a/ee366a76ef67cba32a0eea651abb5ddc.png" width=50% />
+						<img src="https://cdn.memegenerator.es/imagenes/memes/full/19/28/19281144.jpg" width=50% />
 					</c:if>
 				</c:if>
-				
 			</form:form>
 			
 			<!--  
