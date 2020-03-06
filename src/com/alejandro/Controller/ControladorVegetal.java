@@ -185,7 +185,7 @@ public class ControladorVegetal {
 		//mas o menos ya tenemos los datos necesarios para la factura
 		session.setAttribute("comprado", true);
 		try {
-			mensajeFactura(session, u, articulos, importe);
+			mensajeFactura(u, articulos, importe, listaCompra);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -393,25 +393,37 @@ public class ControladorVegetal {
 		emailSender.send(mimeMessage);
 	}
 	
-	private void mensajeFactura(HttpSession session, Usuario u, int articulos, float importe) throws MessagingException {
-		Usuario destino = (Usuario) session.getAttribute("user");
+	private void mensajeFactura(Usuario u, int articulos, float importe, List<Vegetal>listaCompra) throws MessagingException {
+		System.out.println("Entra en factura");
+		String refs="";
+		try {
+			System.out.println("Entra al try");
+		for (Vegetal v: listaCompra) {
+			refs += "#"+v.getId()+" ";
+		}
+		
 		MimeMessage mimeMessage = emailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 		helper.setFrom("adofruteria@gmail.com");
-		helper.setTo(destino.getEmail());
-		helper.setSubject("FRUTERIA ADO - TU INFORMACION");
+		helper.setTo(u.getEmail());
+		helper.setSubject("FRUTERIA ADO - TU COMPRA");
 		String contenido = 
-				"<h2>Datos de tu cuenta</h2>"
+				"<h2>Has realizado una compra en nuestra tienda</h2>"
 				+"<div>"
-				+"<ul>"
-				+ "<li>Usuario, '"+destino.getUsername()+"'.</li>"
-				+ "<li>Contrase&ntilde;a, '"+destino.getPassword()+"'.</li>"
-				+ "<li>Email, '"+destino.getEmail()+"'.</li>"
-				+ "<li>Nombre, '"+destino.getName()+"'.</li>"
-				+ "<li>Edad, '"+destino.getAge()+"'.</li></ul>"
+				+"<table><thead>"
+				+ "<tr><th>Ref. Artículos</th>"
+				+"<th>Nº Artículos</th>"
+				+"<th>Importe total</th></tr></thead>"
+				+"<tbody><tr><td>"+refs+"</td>"
+				+ "<td>"+articulos+"</td>"
+				+"<td><b>"+importe+"</b></td></tr>"
+				+"</tbody></table>"
 				+"</div>";
 		helper.setText(contenido, true);
-		
+		emailSender.send(mimeMessage);
+		}catch(Exception e) {
+			
+		}
 	}
 
 
