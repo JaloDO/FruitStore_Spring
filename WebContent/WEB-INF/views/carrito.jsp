@@ -55,7 +55,7 @@
 	<div><br /></div>
 	<div class="row text-center" >
  			
- 			<form:form method="post" action="/Fruteria-ADO/comprar" style="width:100%;">
+ 			<form:form method="post" action="comprar" style="width:100%;">
  				<!-- gobernamos el formulario en funcion de si el carrito tiene elementos -->
  				<c:if test="${not empty sessionScope.listaCarrito}">
  				<table class="table table-dark table-striped">
@@ -103,9 +103,17 @@
 				</div>
 				</c:if>
 				<c:if test="${empty sessionScope.listaCarrito}">
-				<label class="badge badge-danger" style="width:100%;font-size:3em;">No te gusta nada!</label>
-				<img src="https://www.pngitem.com/pimgs/m/102-1025083_worry-svg-png-icon-free-download-black-sad.png" width=50% />
+					<c:if test="${sessionScope.comprado == false}">
+					
+						<label class="badge badge-danger" style="width:100%;font-size:3em;">No te gusta nada!</label>
+						<img src="https://www.pngitem.com/pimgs/m/102-1025083_worry-svg-png-icon-free-download-black-sad.png" width=50% />
+					</c:if>
+					<c:if test="${sessionScope.comprado == true}">
+						<label class="badge badge-success" style="width:100%;font-size:3em;">Gracias por tu compra!</label>
+						<img src="https://i.pinimg.com/originals/ee/36/6a/ee366a76ef67cba32a0eea651abb5ddc.png" width=50% />
+					</c:if>
 				</c:if>
+				
 			</form:form>
 			
 			<!--  

@@ -117,6 +117,8 @@ public class ControladorVegetal {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("listaCarrito");
+		session.removeAttribute("contador");
 		return "login";
 	}
 	
@@ -141,6 +143,7 @@ public class ControladorVegetal {
 			session.setAttribute("listaCarrito", listaCarrito);
 			session.setAttribute("contador", ++contador);
 		}else {
+			contador=1;
 			listaCarrito = new ArrayList<Vegetal>();
 			listaCarrito.add(producto);
 			session.setAttribute("listaCarrito", listaCarrito);
@@ -157,8 +160,15 @@ public class ControladorVegetal {
 		return "redirect:/carrito";
 	}
 	
+	
+	//METODO PAGAR
+	@RequestMapping(value="/comprar", method = RequestMethod.POST)
 	public String pagar(HttpSession session) {
 		Usuario u = (Usuario) session.getAttribute("user");
+		if(u==null) {
+			return "redirect:/signIn";
+		}
+		System.out.println("no entra 3");
 		List<Vegetal> listaCompra = (List<Vegetal>) session.getAttribute("listaCarrito");
 		session.removeAttribute("listaCarrito");
 		session.removeAttribute("contador");
@@ -168,14 +178,17 @@ public class ControladorVegetal {
 			importe += v.getPrecio();
 		}
 		//mas o menos ya tenemos los datos necesarios para la factura
-		
-		
-		
-		
-		
-		return "";
+		session.setAttribute("comprado", true);
+		try {
+			mensajeFactura(session, u, articulos, importe);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/carrito";
 	}
 	
+
 	/*
 	 * GESTIÓN DEL FRONT
 	 */
@@ -222,6 +235,7 @@ public class ControladorVegetal {
 
 	@RequestMapping(value="listadoVegetales2/{pageId}")
 	public ModelAndView listadoVegetales2(@PathVariable int pageId, HttpSession session) {
+		session.setAttribute("comprado", false);
 		int total=6;
 		pageId=(pageId)*total+1;
 		List <Vegetal> listaFiltro = dao.listarVegetalesPorPaginas(pageId, total);
@@ -370,7 +384,28 @@ public class ControladorVegetal {
 				+"</div>";
 		helper.setText(contenido, true);
 		emailSender.send(mimeMessage);
+	}
+	
+	private void mensajeFactura(HttpSession session, Usuario u, int articulos, float importe) throws MessagingException {
+		Usuario destino = (Usuario) session.getAttribute("user");
+		MimeMessage mimeMessage = emailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+		helper.setFrom("adofruteria@gmail.com");
+		helper.setTo(destino.getEmail());
+		helper.setSubject("FRUTERIA ADO - TU INFORMACION");
+		String contenido = 
+				"<h2>Datos de tu cuenta</h2>"
+				+"<div>"
+				+"<ul>"
+				+ "<li>Usuario, '"+destino.getUsername()+"'.</li>"
+				+ "<li>Contrase&ntilde;a, '"+destino.getPassword()+"'.</li>"
+				+ "<li>Email, '"+destino.getEmail()+"'.</li>"
+				+ "<li>Nombre, '"+destino.getName()+"'.</li>"
+				+ "<li>Edad, '"+destino.getAge()+"'.</li></ul>"
+				+"</div>";
+		helper.setText(contenido, true);
 		
 	}
+
 
 }

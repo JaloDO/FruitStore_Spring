@@ -9,7 +9,8 @@
 <title>Inicio</title>
 </head>
 <body>
-	<% response.sendRedirect("listadoVegetales2/0"); %>
+	<% session.setAttribute("comprado", false); 
+	response.sendRedirect("listadoVegetales2/0"); %>
 	<!-- 
 	<table width="80%" align="center">
 		<tr>
