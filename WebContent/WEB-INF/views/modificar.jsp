@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <head>
 	<title>CRUD SPRING MVC CON MYSQL</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -23,7 +24,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/carrito">
-            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/></a>
+            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/>
+            	<c:if test="${not empty sessionScope.listaCarrito}">(${sessionScope.contador})</c:if>
+            </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#" disabled>Mis Datos
@@ -51,22 +54,22 @@
 					</div>
 					<div class="form-group">
 						<label for = "password" class="text-info">Contraseña: </label>
-						<form:input type="password" path="password" class="form-control"/>
+						<form:input type="password" path="password" class="form-control" placeholder="6 a 14 caracteres"/>
 						<form:errors path="password"/>
 					</div>
 					<div class="form-group">
 						<label for = "email" class="text-info">Email: </label>
-						<form:input path="email" class="form-control"/>
+						<form:input path="email" class="form-control" placeholder="formato: %@%.%  ej:invent@gmail.com"/>
 						<form:errors path="email"/>
 					</div>
 					<div class="form-group">
 						<label for = "name" class="text-info">Nombre: </label>
-						<form:input path="name" class="form-control"/>
+						<form:input path="name" class="form-control" placeholder="max 40 caracteres"/>
 						<form:errors path="name"/>
 					</div>
 					<div class="form-group">
 						<label for ="age" class="text-info">Edad:</label>
-						<form:input path="age" class="form-control"/>
+						<form:input path="age" class="form-control" placeholder="debes ser mayor de edad"/>
 						<form:errors path="age"/>
 					</div>
 					<div class="form-group text-center">

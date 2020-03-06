@@ -7,16 +7,12 @@ public class Vegetal {
 
 		private int id;
 	@NotEmpty(message="Campo obligatorio")
-	@NotNull
 		private String nombre;
 	@NotEmpty(message="Campo obligatorio")
-	@NotNull
 		private String categoria;
 	@NotEmpty(message="Campo obligatorio")
-	@NotNull
 		private String procedencia;
 	@NotEmpty(message="Campo obligatorio")
-	@NotNull
 		private String imagen;
 	@NotNull
 		private float precio;

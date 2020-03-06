@@ -47,15 +47,10 @@
 	<div class="row-fluid">
 		<div class="col-md-6">
 			<h4 class="text">Bienvenido Administrador</h4>
+			<hr> 
 			<div class="container">
-			     
-       <form action="../buscarCategoria" method="post">
-    	<input type="text" name="categoria">
-    	<input type="submit" value="buscar">
-    	</form>
-    	<a href="listadoVegetal/0">Todos</a>
+			    
   
-		<hr>
 	   <c:set var="ind" value="0" scope="page" />
 	    <c:forEach items="${listaVegetal}" var="item" varStatus="status2">
          

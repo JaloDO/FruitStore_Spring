@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,12 +19,13 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">
-            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
+            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/carrito">
             	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/>
-            	
+            	<c:if test="${not empty sessionScope.listaCarrito}">(${sessionScope.contador})</c:if>
             </a>
           </li>
           <li class="nav-item active">
@@ -50,11 +53,11 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Usuario:</label><br>
-                                <input type="text" id="username" name="username" class="form-control" />             
+                                <input type="text" id="username" name="username" class="form-control" placeholder="5 a 14 caracteres"/>             
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" id="password" name="password" class="form-control" /> 
+                                <input type="password" id="password" name="password" class="form-control" placeholder="6 a 14 caracteres"/> 
                             </div>
                             <div class="form-group text-center">
                                

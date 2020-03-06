@@ -19,7 +19,8 @@
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/signIn">
-            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/></a>
+            	<img src="https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png" width="20" height="30"/>
+            </a>
           </li>
         <li class="nav-item">
             <a class="nav-link" href="/Fruteria-ADO/listadoVegetales2/0">Tienda</a>
@@ -36,34 +37,34 @@
   <div id="general_container" style="position:relative;">
 <div class="container-fluid" style="min-height:80vh;">
 
-		<p></p>
+		<p><br /></p>
 		<div class="row justify-content-center align-items-center">
 			<div class="col-md-6">
 				<h3 class="text-center text-info">Regístrate</h3>
 				<form:form method="post" commandName="command" action="registrar">
 					<div class="form-group">
 						<label for = "username" class="text-info">Usuario: </label>
-						<form:input path="username" class="form-control"/>
+						<form:input path="username" class="form-control" placeholder="5 a 14 caracteres"/>
 						<form:errors path="username"/>
 					</div>
 					<div class="form-group">
 						<label for = "password" class="text-info">Contraseña: </label>
-						<form:input type="password" path="password" class="form-control"/>
+						<form:input type="password" path="password" class="form-control" placeholder="6 a 14 caracteres"/>
 						<form:errors path="password"/>
 					</div>
 					<div class="form-group">
 						<label for = "email" class="text-info">Email: </label>
-						<form:input path="email" class="form-control"/>
+						<form:input path="email" class="form-control" placeholder="formato: %@%.%  ej:invent@gmail.com"/>
 						<form:errors path="email"/>
 					</div>
 					<div class="form-group">
 						<label for = "name" class="text-info">Nombre: </label>
-						<form:input path="name" class="form-control"/>
+						<form:input path="name" class="form-control" placeholder="max 40 caracteres"/>
 						<form:errors path="name"/>
 					</div>
 					<div class="form-group">
 						<label for ="age" class="text-info">Edad:</label>
-						<form:input path="age" class="form-control"/>
+						<form:input path="age" class="form-control" value="18" placeholder="debes ser mayor de edad"/>
 						<form:errors path="age"/>
 					</div>
 					<div class="form-group text-center">

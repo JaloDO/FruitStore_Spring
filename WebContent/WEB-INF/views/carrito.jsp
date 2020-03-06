@@ -29,7 +29,9 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">
-            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/></a>
+            	<img src="https://augustobrigadaw.000webhostapp.com/resources2/Carrito.png" class="d-inline-block align-top" width="30" height="30"/>
+            	<c:if test="${not empty sessionScope.listaCarrito}">(${sessionScope.contador})</c:if>
+            </a>
           </li>
           <c:if test="${sessionScope.user == null}">
         	<li class="nav-item">

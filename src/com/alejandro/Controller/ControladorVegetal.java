@@ -36,6 +36,7 @@ public class ControladorVegetal {
 	@Autowired
 	JavaMailSender emailSender;
 
+	int contador = 1;
 	/*
 	 * GESTIÓN DEL SESION
 	 */
@@ -138,10 +139,12 @@ public class ControladorVegetal {
 			listaCarrito = (List<Vegetal>) session.getAttribute("listaCarrito");
 			listaCarrito.add(producto);
 			session.setAttribute("listaCarrito", listaCarrito);
+			session.setAttribute("contador", ++contador);
 		}else {
 			listaCarrito = new ArrayList<Vegetal>();
 			listaCarrito.add(producto);
 			session.setAttribute("listaCarrito", listaCarrito);
+			session.setAttribute("contador", contador);
 		}
 		System.out.println("Size carrito: "+listaCarrito.size());
 		return "redirect:/listadoVegetales2/0";
@@ -150,7 +153,27 @@ public class ControladorVegetal {
 	@RequestMapping(value="/eliminarTodo", method = RequestMethod.GET)
 	public String borrarCarrito(HttpSession session) {
 		session.removeAttribute("listaCarrito");
+		session.removeAttribute("contador");
 		return "redirect:/carrito";
+	}
+	
+	public String pagar(HttpSession session) {
+		Usuario u = (Usuario) session.getAttribute("user");
+		List<Vegetal> listaCompra = (List<Vegetal>) session.getAttribute("listaCarrito");
+		session.removeAttribute("listaCarrito");
+		session.removeAttribute("contador");
+		int articulos = listaCompra.size();
+		float importe = 0;
+		for(Vegetal v:listaCompra) {
+			importe += v.getPrecio();
+		}
+		//mas o menos ya tenemos los datos necesarios para la factura
+		
+		
+		
+		
+		
+		return "";
 	}
 	
 	/*
@@ -270,22 +293,23 @@ public class ControladorVegetal {
 		}
 	}
 
-	@RequestMapping("/listadoVeg")
-	public ModelAndView listadoEmpleados() {
-		List<Vegetal> lista = dao.listarVegetales();
-		return new ModelAndView("listadoVegetales", "listV", lista);
-	}
-
 	@RequestMapping(value = "/editarVegetal/{id}")
 	public ModelAndView editarVegetal(@PathVariable int id) {
+		
 		Vegetal veg = dao.buscarporId(id);
 		return new ModelAndView("editarVegetal", "command", veg);
 	}
 
 	@RequestMapping(value = "/editarGuardar", method = RequestMethod.POST)
-	public ModelAndView editarGuardar(@ModelAttribute("vegetal") Vegetal veg) {
-		System.out.println(dao.actualizar(veg));
-		return new ModelAndView("redirect:listadoVegetal/0");
+	public ModelAndView editarGuardar(@Valid @ModelAttribute("veg") Vegetal veg, BindingResult result) {
+		if(result.hasErrors()){
+			return new ModelAndView("redirect:editarVegetal/"+veg.getId());
+		}
+		else {
+			System.out.println(dao.actualizar(veg));
+			return new ModelAndView("redirect:listadoVegetal/0");
+		}
+		
 	}
 
 	@RequestMapping(value = "/eliminarVegetal/{id}", method = RequestMethod.GET)
@@ -309,6 +333,7 @@ public class ControladorVegetal {
 				if(v.getId()==id){
 					System.out.println("eliminado: "+listaCarrito.get(cont).toString());
 					listaCarrito.remove(cont);
+					session.setAttribute("contador", --contador);
 				}
 				cont++;
 			}
@@ -340,7 +365,7 @@ public class ControladorVegetal {
 				+ "<li>Usuario, '"+destino.getUsername()+"'.</li>"
 				+ "<li>Contrase&ntilde;a, '"+destino.getPassword()+"'.</li>"
 				+ "<li>Email, '"+destino.getEmail()+"'.</li>"
-				+ "<li>Nombre, '"+destino.getUsername()+"'.</li>"
+				+ "<li>Nombre, '"+destino.getName()+"'.</li>"
 				+ "<li>Edad, '"+destino.getAge()+"'.</li></ul>"
 				+"</div>";
 		helper.setText(contenido, true);
